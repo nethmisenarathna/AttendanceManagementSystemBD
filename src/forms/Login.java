@@ -7,6 +7,7 @@ package forms;
 
 import java.awt.Color;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import utility.BDUtility;
 
 /**
@@ -20,10 +21,10 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        BDUtility.setImage(this, "images/login-background123.jpg", 635, 506);
-        this.getRootPane().setBorder(BorderFactory.createMatteBorder(6, 6, 6, 6, Color.BLACK));
-        txtEmail.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLUE));
-        txtPassword.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLUE));
+        BDUtility.setImage(this, "images/login-background.jpg", 635, 506);
+        this.getRootPane().setBorder(BorderFactory.createMatteBorder(6, 6, 6, 6, Color.YELLOW));
+        txtEmail.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.ORANGE));
+        txtPassword.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.ORANGE));
     }
 
     /**
@@ -77,6 +78,11 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setText("Email");
 
         txtEmail.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
 
         txtPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
@@ -85,9 +91,14 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        btnLogin.setBackground(new java.awt.Color(102, 0, 153));
+        btnLogin.setBackground(new java.awt.Color(255, 153, 51));
         btnLogin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,6 +176,21 @@ public class Login extends javax.swing.JFrame {
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        String email = txtEmail.getText().toString();
+        String password = new String(txtPassword.getPassword());
+        if("Institute".equalsIgnoreCase(email) && "Institute".equalsIgnoreCase(password)){
+            this.dispose();
+            BDUtility.openForm(Dashboard.class.getSimpleName(), new Dashboard());
+        }else {
+            JOptionPane.showMessageDialog(null, "Invalid Credentials", "Invalid",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
 
     /**
      * @param args the command line arguments
