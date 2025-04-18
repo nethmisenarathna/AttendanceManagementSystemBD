@@ -175,7 +175,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUpdateUserActionPerformed
 
     private void btnRegisterUser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUser1ActionPerformed
-        // TODO add your handling code here:
+        BDUtility.openForm(UserRegistration.class.getSimpleName(), new UserRegistration());
     }//GEN-LAST:event_btnRegisterUser1ActionPerformed
 
     private void btnViewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewUserActionPerformed

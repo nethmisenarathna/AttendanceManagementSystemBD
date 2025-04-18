@@ -19,7 +19,7 @@ public class tables {
             con = ConnectionProvider.getCon();
             st = con.createStatement();
             
-            /*if (!tableExists(st, "userdetails")) {
+            if (!tableExists(st, "userdetails")) {
                 st.executeUpdate("CREATE TABLE userdetails ("
                         + "id INT AUTO_INCREMENT PRIMARY KEY, "
                         + "name VARCHAR(255) NOT NULL, "
@@ -43,7 +43,7 @@ public class tables {
                         + "workduration VARCHAR(100)"
                         + ");");
             }
-            JOptionPane.showMessageDialog(null, "Table Checked/created Successsfully");*/
+            JOptionPane.showMessageDialog(null, "Table Checked/created Successsfully");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         } finally {

@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 
 public class ConnectionProvider {
     
-    private static final String DB_NAME = "attendancemgtdatabase1";
+    private static final String DB_NAME = "attendance_db";
     private static final String DB_URL = "jdbc:mysql://localhost:3306/";
     private static final String DB_USERNAME ="root";
     private static final String DB_PASSWORD = "nethmi123";
