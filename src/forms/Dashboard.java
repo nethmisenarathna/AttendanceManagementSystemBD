@@ -179,7 +179,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegisterUser1ActionPerformed
 
     private void btnViewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewUserActionPerformed
-        // TODO add your handling code here:
+        BDUtility.openForm(ViewUser.class.getSimpleName(), new ViewUser());
     }//GEN-LAST:event_btnViewUserActionPerformed
 
     private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
@@ -191,7 +191,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGenerateQrActionPerformed
 
     private void btnviewQrsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewQrsActionPerformed
-        // TODO add your handling code here:
+        BDUtility.openForm(ViewQrs.class.getSimpleName(),new ViewQrs());
     }//GEN-LAST:event_btnviewQrsActionPerformed
 
     private void btnMarkAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarkAttendanceActionPerformed
@@ -199,7 +199,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMarkAttendanceActionPerformed
 
     private void btnViewAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAttendanceActionPerformed
-        // TODO add your handling code here:
+        BDUtility.openForm(ViewAttendance.class.getSimpleName(),new ViewAttendance());
     }//GEN-LAST:event_btnViewAttendanceActionPerformed
 
     /**
