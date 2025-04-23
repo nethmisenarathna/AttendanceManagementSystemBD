@@ -68,7 +68,7 @@ public class GenerateQr extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Generat User QR");
+        jLabel1.setText("Generate User QR");
 
         jInternalFrame1.setVisible(true);
         jInternalFrame1.addMouseListener(new java.awt.event.MouseAdapter() {
