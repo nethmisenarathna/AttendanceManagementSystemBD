@@ -206,7 +206,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateUserActionPerformed
-        // TODO add your handling code here:
+        BDUtility.openForm(UpdateUser.class.getSimpleName(), new UpdateUser());
     }//GEN-LAST:event_btnUpdateUserActionPerformed
 
     private void btnRegisterUser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUser1ActionPerformed
@@ -230,7 +230,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnviewQrsActionPerformed
 
     private void btnMarkAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarkAttendanceActionPerformed
-         BDUtility.openForm(MarkAttendance.class.getSimpleName(), new MarkAttendance());
+         BDUtility.openForm(MarkAttendance123.class.getSimpleName(), new MarkAttendance123());
     }//GEN-LAST:event_btnMarkAttendanceActionPerformed
 
     private void btnViewAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAttendanceActionPerformed

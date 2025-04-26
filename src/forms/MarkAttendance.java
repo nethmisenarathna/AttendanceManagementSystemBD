@@ -475,11 +475,11 @@ private boolean CheckInCheckOut() throws HeadlessException, SQLException {
         color = Color.GREEN;
     }
 
-    lblCheckInCheckOut.setHorizontalAlignment(JLabel.CENTER);
-    lblCheckInCheckOut.setText(popUpHeader);
-    lblCheckInCheckOut.setForeground(color);
-    lblCheckInCheckOut.setBackground(Color.DARK_GRAY);
-    lblCheckInCheckOut.setOpaque(true);
+    lblCheckinCheckout.setHorizontalAlignment(JLabel.CENTER);
+    lblCheckinCheckout.setText(popUpHeader);
+    lblCheckinCheckout.setForeground(color);
+    lblCheckinCheckout.setBackground(Color.DARK_GRAY);
+    lblCheckinCheckout.setOpaque(true);
 
     showPopUpForCertainDuration(popUpMessage, popUpHeader, JOptionPane.INFORMATION_MESSAGE);
     return true;
@@ -500,10 +500,10 @@ private void showPopUpForCertainDuration(String popUpMessage, String popUpHeader
 }
 
 private void clearUserDetails() {
-    lblCheckInCheckOut.setText("");
-    lblCheckInCheckOut.setForeground(null);
-    lblCheckInCheckOut.setBackground(null);
-    lblCheckInCheckOut.setOpaque(false);
+    lblCheckinCheckout.setText("");
+    lblCheckinCheckout.setForeground(null);
+    lblCheckinCheckout.setBackground(null);
+    lblCheckinCheckout.setOpaque(false);
     lblName.setText("");
     lblImage.setIcon(null);
 }

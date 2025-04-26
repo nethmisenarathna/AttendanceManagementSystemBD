@@ -219,10 +219,11 @@ public class ViewUser extends javax.swing.JFrame {
             }else{
                 lblImage.setIcon(null);
                 JOptionPane.showMessageDialog(null, "Either image has been deleted or not found", "Image not found", JOptionPane.WARNING_MESSAGE);
+            }    
             }  else{
                     lblImage.setIcon(null);
                     }
-        }
+        
     }//GEN-LAST:event_userTableMouseClicked
     
    private void fetchUser(String searchText) throws Exception{
