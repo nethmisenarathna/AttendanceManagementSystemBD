@@ -1,4 +1,11 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package forms;  
 
+import javax.swing.JFrame;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -9,23 +16,39 @@ import java.sql.*;
 import com.toedter.calendar.JDateChooser; // calendar date picker library
 import dao.ConnectionProvider;
 import java.text.SimpleDateFormat;
+import utility.BDUtility;
 
 public class ViewAttendance1 extends JFrame {
-
+     
     JTable table;
     DefaultTableModel model;
     JTextField searchField;
     JDateChooser fromDateChooser, toDateChooser;
-    JButton searchButton, filterButton, refreshButton;
+    JButton searchButton, filterButton, refreshButton,closeButton;
     JLabel lblPresent, lblAbsent, presentLBL, absentLBL;
     JCheckBox checkContact, checkAddress, checkCountry, checkEmail;
 
     public ViewAttendance1() {
+        
         setTitle("View Attendance");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(1200, 750);
         setLocationRelativeTo(null);
+        
+        setUndecorated(true); // Hides the default title bar
+        setResizable(false);
+        
+        this.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLACK)); 
 
+        closeButton = new JButton("X");
+        closeButton.setBounds(1160, 5, 30, 30);  // Position it at the top-right corner
+        closeButton.setBackground(Color.RED);
+        closeButton.setForeground(Color.WHITE);
+        closeButton.setFocusPainted(false);
+        closeButton.setBorder(BorderFactory.createLineBorder(Color.RED));
+        closeButton.addActionListener(e -> dispose()); // Close action
+        add(closeButton);
+        
         // Top Panel for Search and Filter
         JPanel topPanel = new JPanel(new FlowLayout());
 

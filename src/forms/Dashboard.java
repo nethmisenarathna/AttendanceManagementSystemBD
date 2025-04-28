@@ -19,6 +19,7 @@ public class Dashboard extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard
      */
+    
     public Dashboard() {
         initComponents();
         BDUtility.setImage(this, "images/abc1.jpg", 1366, 768 );
