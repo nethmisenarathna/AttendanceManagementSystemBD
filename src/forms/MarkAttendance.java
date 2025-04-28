@@ -54,6 +54,8 @@ import utility.BDUtility;
 
 
 
+
+
 public class MarkAttendance extends javax.swing.JFrame implements Runnable, ThreadFactory {
     private JLabel backgroundLabel;
 
@@ -99,8 +101,10 @@ public class MarkAttendance extends javax.swing.JFrame implements Runnable, Thre
         lblName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1366, 768));
         setMinimumSize(new java.awt.Dimension(1366, 768));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1366, 768));
         setSize(new java.awt.Dimension(322, 286));
 
         btnExit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N

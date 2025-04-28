@@ -4,20 +4,26 @@
  */
 package forms;
 
-import java.awt.Color;
-import javax.swing.BorderFactory;
-import utility.BDUtility;
 import dao.ConnectionProvider;
+import forms.columns;
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.ZoneId;
+//import static java.time.temporal.TemporalQueries.zoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-import javax.swing.table.AbstractTableModel;
-import java.sql.*;
+import javax.swing.table.DefaultTableModel;
+import utility.BDUtility;
 
 /**
  *
@@ -25,16 +31,19 @@ import java.sql.*;
  */
 public class ViewAttendance extends javax.swing.JFrame {
 
+    private Long presentCount;
+    
+
     /**
      * Creates new form ViewAttendance
      */
     public ViewAttendance() {
         initComponents();
-        BDUtility.setImage(this, "images/abc1.jpg", 1101, 501);
+        BDUtility.setImage(this, "images/abc1.jpg",1101, 501);
         this.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLACK));
-
-        //dateChooserFrom.setDateFormat("yyyy-MM-dd");
-        //dateChooserTo.setDateFormat("yyyy-MM-dd");
+        
+       
+      
     }
 
     /**
@@ -46,74 +55,34 @@ public class ViewAttendance extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        checkboxContact = new java.awt.Checkbox();
-        checkboxRegID = new java.awt.Checkbox();
-        checkboxCountry = new java.awt.Checkbox();
-        checkboxState = new java.awt.Checkbox();
-        checkboxAddress = new java.awt.Checkbox();
-        jLabel1 = new javax.swing.JLabel();
-        btnExit = new javax.swing.JButton();
+        jCalendarPanel1 = new de.wannawork.jcalendar.JCalendarPanel();
+        jCalendarPanel2 = new de.wannawork.jcalendar.JCalendarPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         userTable = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        btnExit = new javax.swing.JButton();
+        jCalendarComboBoxTo = new de.wannawork.jcalendar.JCalendarComboBox();
+        jCalendarComboBoxFrom = new de.wannawork.jcalendar.JCalendarComboBox();
         txtSearch = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        presentLBL = new javax.swing.JLabel();
         absentLBL = new javax.swing.JLabel();
-        lblPresent = new javax.swing.JLabel();
+        presentLBL = new javax.swing.JLabel();
         lblAbsent = new javax.swing.JLabel();
+        lblPresent = new javax.swing.JLabel();
+        chechBoxContact = new javax.swing.JCheckBox();
+        chechBoxAddress = new javax.swing.JCheckBox();
+        chechBoxState = new javax.swing.JCheckBox();
+        chechBoxCountry = new javax.swing.JCheckBox();
+        chechBoxUniqueRegid = new javax.swing.JCheckBox();
         btnResetFilters = new javax.swing.JButton();
-        jCheckBoxContact = new javax.swing.JCheckBox();
-        jCheckBoxAdreess = new javax.swing.JCheckBox();
-        jCheckBoxState = new javax.swing.JCheckBox();
-        jCheckBoxCountry = new javax.swing.JCheckBox();
-        jCheckBoxRegID = new javax.swing.JCheckBox();
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        checkboxContact.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        checkboxContact.setLabel("Contact");
-
-        checkboxRegID.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        checkboxRegID.setLabel("Reg ID");
-
-        checkboxCountry.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        checkboxCountry.setLabel("Country");
-
-        checkboxState.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        checkboxState.setLabel("State");
-
-        checkboxAddress.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        checkboxAddress.setLabel("Address");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1101, 501));
         setUndecorated(true);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("View Attendance");
-
-        btnExit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnExit.setText("X");
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
             }
         });
 
@@ -130,140 +99,150 @@ public class ViewAttendance extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(userTable);
 
-        txtSearch.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("View Attendance");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Search");
+        btnExit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnExit.setText("X");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("TO");
+        jLabel2.setText("From");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("From");
+        jLabel3.setText("To");
 
-        presentLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        presentLBL.setText("Present:");
+        jLabel4.setText("Search");
 
-        absentLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        absentLBL.setText("Absent:");
+        absentLBL.setText("Absent");
 
-        lblPresent.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblPresent.setForeground(new java.awt.Color(51, 255, 51));
-        lblPresent.setText("---------");
+        presentLBL.setText("Present");
 
         lblAbsent.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblAbsent.setForeground(new java.awt.Color(255, 51, 51));
-        lblAbsent.setText("---------");
+        lblAbsent.setText("-------");
+
+        lblPresent.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblPresent.setText("-------");
+
+        chechBoxContact.setText("Contact");
+
+        chechBoxAddress.setText("Address");
+        chechBoxAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chechBoxAddressActionPerformed(evt);
+            }
+        });
+
+        chechBoxState.setText("State");
+        chechBoxState.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chechBoxStateActionPerformed(evt);
+            }
+        });
+
+        chechBoxCountry.setText("Country");
+
+        chechBoxUniqueRegid.setText("Unique Reg ID");
 
         btnResetFilters.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnResetFilters.setText("Reset Filtres");
+        btnResetFilters.setText("Reset Filters");
         btnResetFilters.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetFiltersActionPerformed(evt);
             }
         });
 
-        jCheckBoxContact.setText("Contact");
-
-        jCheckBoxAdreess.setText("Address");
-
-        jCheckBoxState.setText("State");
-
-        jCheckBoxCountry.setText("Country");
-
-        jCheckBoxRegID.setText("Reg ID");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnResetFilters)
-                        .addGap(29, 29, 29))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(absentLBL)
-                                    .addComponent(presentLBL))
-                                .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblPresent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblAbsent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jCheckBoxAdreess, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCheckBoxContact, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCheckBoxState, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCheckBoxCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCheckBoxRegID, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(presentLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(absentLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblAbsent, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPresent, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(chechBoxContact, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chechBoxAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chechBoxState, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chechBoxCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnResetFilters)
+                    .addComponent(chechBoxUniqueRegid))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(434, 434, 434)
+                            .addComponent(jLabel1)
+                            .addGap(446, 446, 446)
                             .addComponent(btnExit))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(206, 206, 206)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(257, 257, 257)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 821, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCalendarComboBoxFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(96, 96, 96)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jCalendarComboBoxTo, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)))
+                            .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jCalendarComboBoxFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCalendarComboBoxTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
+                        .addGap(94, 94, 94)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(presentLBL)
-                            .addComponent(lblPresent))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(absentLBL)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(lblAbsent, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(jCheckBoxContact)
-                        .addGap(29, 29, 29)
-                        .addComponent(jCheckBoxAdreess)
-                        .addGap(26, 26, 26)
-                        .addComponent(jCheckBoxState)
-                        .addGap(27, 27, 27)
-                        .addComponent(jCheckBoxCountry)
-                        .addGap(27, 27, 27)
-                        .addComponent(jCheckBoxRegID)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnResetFilters))
-                    .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblPresent))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(59, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(absentLBL)
+                            .addComponent(lblAbsent))
+                        .addGap(45, 45, 45)
+                        .addComponent(chechBoxContact)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(chechBoxAddress)
+                        .addGap(18, 18, 18)
+                        .addComponent(chechBoxState)
+                        .addGap(18, 18, 18)
+                        .addComponent(chechBoxCountry)
+                        .addGap(18, 18, 18)
+                        .addComponent(chechBoxUniqueRegid)
+                        .addGap(45, 45, 45)
+                        .addComponent(btnResetFilters)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
@@ -271,22 +250,31 @@ public class ViewAttendance extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_btnExitActionPerformed
 
+    private void chechBoxAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chechBoxAddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chechBoxAddressActionPerformed
+
     private void btnResetFiltersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetFiltersActionPerformed
-        txtSearch.setText("");
-        dateChooserFrom.setDate(null);
-        dateChooserTo.setDate(null);
-        jCheckBoxContact.setSelected(false);
-        jCheckBoxAdreess.setSelected(false);
-        jCheckBoxState.setSelected(false);
-        jCheckBoxCountry.setSelected(false);
-        jCheckBoxRegID.setSelected(false);
-
-        loadDataInTable();
-
+       txtSearch.setText("");
+       jCalendarComboBoxFrom.setDate( null);
+       jCalendarComboBoxTo.setDate(null);
+       chechBoxContact.setSelected(false);
+       chechBoxAddress.setSelected(false);
+       chechBoxState.setSelected(false);
+       chechBoxCountry.setSelected(false);
+       chechBoxUniqueRegid.setSelected(false);
+       
+       loadDataInTable();
+       
+        
     }//GEN-LAST:event_btnResetFiltersActionPerformed
+
+    private void chechBoxStateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chechBoxStateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chechBoxStateActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         loadDataInTable();
@@ -331,21 +319,19 @@ public class ViewAttendance extends javax.swing.JFrame {
     private javax.swing.JLabel absentLBL;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnResetFilters;
-    private java.awt.Checkbox checkboxAddress;
-    private java.awt.Checkbox checkboxContact;
-    private java.awt.Checkbox checkboxCountry;
-    private java.awt.Checkbox checkboxRegID;
-    private java.awt.Checkbox checkboxState;
-    private javax.swing.JCheckBox jCheckBoxAdreess;
-    private javax.swing.JCheckBox jCheckBoxContact;
-    private javax.swing.JCheckBox jCheckBoxCountry;
-    private javax.swing.JCheckBox jCheckBoxRegID;
-    private javax.swing.JCheckBox jCheckBoxState;
+    private javax.swing.JCheckBox chechBoxAddress;
+    private javax.swing.JCheckBox chechBoxContact;
+    private javax.swing.JCheckBox chechBoxCountry;
+    private javax.swing.JCheckBox chechBoxState;
+    private javax.swing.JCheckBox chechBoxUniqueRegid;
+    private de.wannawork.jcalendar.JCalendarComboBox jCalendarComboBoxFrom;
+    private de.wannawork.jcalendar.JCalendarComboBox jCalendarComboBoxTo;
+    private de.wannawork.jcalendar.JCalendarPanel jCalendarPanel1;
+    private de.wannawork.jcalendar.JCalendarPanel jCalendarPanel2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAbsent;
     private javax.swing.JLabel lblPresent;
@@ -355,46 +341,44 @@ public class ViewAttendance extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void loadDataInTable() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        List<String> Colums = new ArrayList<>(Arrays.asList("ID", "Name", "Email", "CheckIn", "CheckOut", "Work Duration"));
+        List<String> Columns = new ArrayList<>(Arrays.asList("ID", "Name", "Gender","Email", "CheckIn", "CheckOut", "Work Duration"));
         String searchText = txtSearch.getText().toString();
-        Date fromDateFromCal = dateChooserFrom.getDate();
+        Date fromDateFromCal = jCalendarComboBoxFrom.getDate();
         LocalDate fromDate = null;
-        if (fromDate  {
-            FromCal != null
-        }
         
-            ){
-        fromdate = fromDateFromcal.toInstant().atZone(ZoneId, SystemDefault()).toLocalDate();
+        if (fromDateFromCal != null){
+        fromDate = fromDateFromCal.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            
+        //fromDate = fromDateFromCal.toInstant().atZone(ZoneId.SystemDefault()).toLocalDate();
         }
-        Date toDateFromCal = dateChooserTo.getDate();
+        Date toDateFromCal = jCalendarComboBoxTo.getDate();
         LocalDate toDate = null;
         if (toDateFromCal != null) {
-            toDate = toDateFromCal.toInstant().atZone(zoneId.SystemDEfault()).toLocalDate();
-        }
-
-        Long daysBetween = null;
-        if (fromDate != null && toDate  {
-            1 = null
+            
+              toDate = toDateFromCal.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                //toDate = toDateFromCal.toInstant().atZone(ZoneId.SystemDefault()).toLocalDate();
         }
         
-            ){
+        Long daysBetween = null;
+        if (fromDate != null && toDate !=null)  {
         daysBetween = countWeekdays(fromDate, toDate);
         }
-        Boolean contactIncluded = jCheckBoxContact.issSelected();
-        Boolean addressInclude = jCheckBoxAdreess.isSelected();
-        Boolean sateIncluded = jCheckBoxState.issSelected();
-        Boolean countryIncluded = jCheckBoxCountry.issSelected();
-        Boolean uniqueRegIdIncluded = jCheckBoxRegID.issSelected();
-
-        String sqlQuery = "SELECT ud.id,ud.name,ud.gender, ud.email,ua.date,ua.chechin,ua.chechout,ua.workduration";
+        
+        Boolean contactIncluded=chechBoxContact.isSelected();
+        Boolean addressIncluded=chechBoxAddress.isSelected();
+        Boolean stateIncluded=chechBoxState.isSelected();
+        Boolean countryIncluded=chechBoxCountry.isSelected();
+        Boolean uniqueIdIncluded=chechBoxUniqueRegid.isSelected();
+        
+        
+        String sqlQuery = "SELECT from ud.id, ud.name, ud.gender, ud.email, ua.date, ua.checkin, ua.checkout, ua.work duration";
         if (contactIncluded) {
             columns.add("contact");
-            sqlQuery += ",ud.ontact";
+            sqlQuery += ", ud.contact";
         }
         if (addressIncluded) {
             columns.add("Address");
-            sqlQuery += ",ud.address";
+            sqlQuery += ", ud.address";
         }
         if (stateIncluded) {
             columns.add("State");
@@ -404,40 +388,44 @@ public class ViewAttendance extends javax.swing.JFrame {
             columns.add("Country");
             sqlQuery += ",ud.country";
         }
-        if (uniqueRegIdIncluded) {
+        if (uniqueIdIncluded) {
             columns.add("Unique REg Id");
             sqlQuery += ",ud.uniqueregid";
         }
-
         sqlQuery += "FROM userdeatils AS ud INNER JOIN userattendance AS ua ON ud.id=ua.userid";
         if (searchText != null) {
-            sql += "where (ud.name like '%" + searchText + "%' or ud.email like '%" + searchTeext + "%')";
+            sqlQuery += " WHERE (ud.name LIKE '%" + searchText + "%' OR ud.email LIKE '%" + searchText + "%')";
+            //sqlQuery += "where (ud.name like '%" + searchText + "%' or ud.email like '%" + searchTeext + "%')";
             if (fromDate != null && toDate != null) {
-                sqlQuery += "AND ua.date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
-
+               // sqlQuery += "AND ua.date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+              sqlQuery += " AND ua.date BETWEEN '" + fromDate + "' AND '" + toDate + "'";        
             } else if (fromDate != null) {
                 sqlQuery += "and ua.date = '" + fromDate + "'";
             }
-        } else {
+        }
+        else {
             if (fromDate != null && toDate != null) {
                 sqlQuery += "Where ua.date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
-            } else if (fromDate != null) {
+            } 
+            else if (fromDate != null) {
                 sqlQuery += "Where ua.date = '" + fromDate + "'";
             }
-
+            
+            // Initialize the table model and set column identifiers before adding rows
             DefaultTableModel model = new DefaultTableModel();
             model.setColumnIdentifiers(columns.toArray());
             userTable.setModel(model);
 
+            
             try {
                 Connection con = ConnectionProvider.getCon();
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(sqlQuery);
-                Long presenCount = 01;
-                Long absentCount = 01;
-                Set<String> emailList = new Hashset<>();
+                Long presentCount = 0l;
+                Long absentCount = 0l;
+                Set<String> emailList = new HashSet<>();
                 while (rs.next()) {
-                    List<Object> row = new ArrayList<>;
+                     List<Object> row = new ArrayList<>();
                     row.add(rs.getString("id"));
                     row.add(rs.getString("name"));
                     row.add(rs.getString("gender"));
@@ -446,7 +434,7 @@ public class ViewAttendance extends javax.swing.JFrame {
                     row.add(rs.getString("date"));
                     row.add(rs.getString("checkin"));
                     row.add(rs.getString("checkout"));
-                    row.add(rs.getString("wirkduration"));
+                    row.add(rs.getString("workduration"));
                     if (contactIncluded) {
                         row.add(rs.getString("contact"));
                     }
@@ -459,16 +447,16 @@ public class ViewAttendance extends javax.swing.JFrame {
                     if (countryIncluded) {
                         row.add(rs.getString("country"));
                     }
-                    if (uniqueRegIdIncluded) {
+                    if (uniqueIdIncluded) {
                         row.add(rs.getString("uniqueregid"));
                     }
                     if (rs.getString("checkout") == null) {
-                        absentCoumt++;
+                        absentCount++;
 
                     } else {
                         presentCount++;
                     }
-                    model.addrow(row.toArray());
+                    model.addRow(row.toArray());
                 }
 
                 if (emailList.size() == 1) {
@@ -476,41 +464,39 @@ public class ViewAttendance extends javax.swing.JFrame {
                     lblAbsent.setVisible(true);
                     presentLBL.setVisible(true);
                     absentLBL.setVisible(true);
-                    lblPresent.setText(prsentCount.toString());
+                    lblPresent.setText(presentCount.toString());
                     if (daysBetween != null && daysBetween > 0) {
-                        absentCount = daysBetween - presentCout;
+                        absentCount = daysBetween - presentCount;
 
                     }
-                    lblAbsent.setText(absentCount.toString);
+                    lblAbsent.setText(absentCount.toString());
                 } else {
-                    blPresent.setVisible(false);
+                    lblPresent.setVisible(false);
                     lblAbsent.setVisible(false);
                     presentLBL.setVisible(false);
                     absentLBL.setVisible(false);
                 }
 
             } catch (Exception ex) {
-                JOptionOane.showMessageDialog
-            
-        , "something went wrong.");
+                JOptionPane.showMessageDialog(null, "something went wrong.");
                }
         
         
-        
     }
-    
-    
 
-    private Long countWeekdays(LocalDate start, LocalDate end) {
+    
+    }
+
+    private Long countWeekdays(LocalDate fromDate, LocalDate toDate) {
         long count = 0;
-        LocalDate date = start;
-        while (date.isBefore(end) || date.equals(end)) {
-            if (!(date.getDayOfWeek() == DayOfWeek.SATURDAY || date.getDayOfWeek() == DayOfWeek.SUNDAY)) {
-                count++;
+        LocalDate date = fromDate;
+        while (date.isBefore(toDate) || date.equals(toDate)) {
+         if (!(date.getDayOfWeek() == DayOfWeek.SATURDAY || date.getDayOfWeek() == DayOfWeek.SUNDAY)) {
+              count++;
             }
             date = date.plusDays(1);
         }
-        return count;
+       return count;
     }
-
 }
+

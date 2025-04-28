@@ -9,6 +9,7 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import utility.BDUtility;
 
+
 /**
  *
  * @author USER
@@ -230,12 +231,11 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnviewQrsActionPerformed
 
     private void btnMarkAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarkAttendanceActionPerformed
-         BDUtility.openForm(MarkAttendance123.class.getSimpleName(), new MarkAttendance123());
+         BDUtility.openForm(MarkAttendance.class.getSimpleName(), new MarkAttendance());
     }//GEN-LAST:event_btnMarkAttendanceActionPerformed
 
     private void btnViewAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAttendanceActionPerformed
-        BDUtility.openForm(ViewAttendance.class.getSimpleName(),new ViewAttendance());
-    }//GEN-LAST:event_btnViewAttendanceActionPerformed
+       BDUtility.openForm(ViewAttendance1.class.getSimpleName(), new ViewAttendance1());    }//GEN-LAST:event_btnViewAttendanceActionPerformed
 
     /**
      * @param args the command line arguments
