@@ -19,7 +19,7 @@ import javax.swing.table.TableModel;
 
 /**
  *
- * @author USER
+ * @author Y.I.Ranasinghe
  */
 public class DeleteUser extends javax.swing.JFrame {
 
@@ -51,6 +51,7 @@ public class DeleteUser extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1087, 491));
         setMinimumSize(new java.awt.Dimension(1087, 491));
+        setUndecorated(true);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);

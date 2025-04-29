@@ -12,7 +12,7 @@ import utility.BDUtility;
 
 /**
  *
- * @author USER
+ * @author SAMANPSenarathna
  */
 public class Dashboard extends javax.swing.JFrame {
 

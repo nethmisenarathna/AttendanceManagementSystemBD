@@ -22,7 +22,7 @@ import javax.swing.table.TableModel;
 
 /**
  *
- * @author USER
+ * @author RWTKaumadi
  */
 public class ViewUser extends javax.swing.JFrame {
 

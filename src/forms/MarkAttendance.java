@@ -52,7 +52,10 @@ import javax.swing.JOptionPane;
 import utility.BDUtility;
 
 
-
+/**
+ *
+ * @author N.Wijesundara
+ */
 
 
 
@@ -70,7 +73,7 @@ public class MarkAttendance extends javax.swing.JFrame implements Runnable, Thre
     public MarkAttendance() {
         initComponents();
         
-        BDUtility.setImage(this, "images/abc1.jpg", 1366, 768);
+        BDUtility.setImage(this, "images/abc1.jpg", 5609, 683);
        this.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLACK));
        startClock(); 
        initWebcam();
@@ -195,12 +198,7 @@ public class MarkAttendance extends javax.swing.JFrame implements Runnable, Thre
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        running =false;
-        stopWebcam();
-        if(executor!=null && executor.isShutdown()){
-            executor.shutdown();
-        }
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_btnExitActionPerformed
 
     /**

@@ -7,6 +7,7 @@
             <file>file:/C:/Users/USER/OneDrive/Desktop/OOPALAB/MYSQL%20DATA%20INSERTION%20AND%20RETRIEVAL/AttendanceManagementSystemBD/log4j.properties</file>
             <file>file:/C:/Users/USER/OneDrive/Desktop/OOPALAB/MYSQL%20DATA%20INSERTION%20AND%20RETRIEVAL/AttendanceManagementSystemBD/src/dao/tables.java</file>
             <file>file:/C:/Users/USER/OneDrive/Desktop/OOPALAB/MYSQL%20DATA%20INSERTION%20AND%20RETRIEVAL/AttendanceManagementSystemBD/.gitignore</file>
+            <file>file:/C:/Users/USER/OneDrive/Desktop/OOPALAB/MYSQL%20DATA%20INSERTION%20AND%20RETRIEVAL/AttendanceManagementSystemBD/src/qrCodes/dinushki@gmail.com.jpg</file>
             <file>file:/C:/Users/USER/OneDrive/Desktop/OOPALAB/MYSQL%20DATA%20INSERTION%20AND%20RETRIEVAL/AttendanceManagementSystemBD/src/images/test123@gmail.com.jpeg</file>
             <file>file:/C:/Users/USER/OneDrive/Desktop/OOPALAB/MYSQL%20DATA%20INSERTION%20AND%20RETRIEVAL/AttendanceManagementSystemBD/src/forms/ViewUser.java</file>
             <file>file:/C:/Users/USER/OneDrive/Desktop/OOPALAB/MYSQL%20DATA%20INSERTION%20AND%20RETRIEVAL/AttendanceManagementSystemBD/src/dao/ConnectionProvider.java</file>
@@ -21,13 +22,12 @@
             <file>file:/C:/Users/USER/OneDrive/Desktop/OOPALAB/MYSQL%20DATA%20INSERTION%20AND%20RETRIEVAL/AttendanceManagementSystemBD/src/utility/images/login-background_2.jpg</file>
             <file>file:/C:/Users/USER/OneDrive/Desktop/OOPALAB/MYSQL%20DATA%20INSERTION%20AND%20RETRIEVAL/AttendanceManagementSystemBD/src/utility/BDUtility.java</file>
             <file>file:/C:/Users/USER/OneDrive/Desktop/OOPALAB/MYSQL%20DATA%20INSERTION%20AND%20RETRIEVAL/AttendanceManagementSystemBD/src/forms/MarkAttendance.java</file>
-            <file>file:/C:/Users/USER/OneDrive/Desktop/OOPALAB/MYSQL%20DATA%20INSERTION%20AND%20RETRIEVAL/AttendanceManagementSystemBD/src/forms/MarkAttendance1.java</file>
             <file>file:/C:/Users/USER/OneDrive/Desktop/OOPALAB/MYSQL%20DATA%20INSERTION%20AND%20RETRIEVAL/AttendanceManagementSystemBD/src/log4j.properties</file>
             <file>file:/C:/Users/USER/OneDrive/Desktop/OOPALAB/MYSQL%20DATA%20INSERTION%20AND%20RETRIEVAL/AttendanceManagementSystemBD/src/utility/images/login-background.jpg</file>
-            <file>file:/C:/Users/USER/OneDrive/Desktop/OOPALAB/MYSQL%20DATA%20INSERTION%20AND%20RETRIEVAL/AttendanceManagementSystemBD/src/forms/MarkAttendance123.java</file>
+            <file>file:/C:/Users/USER/OneDrive/Desktop/OOPALAB/MYSQL%20DATA%20INSERTION%20AND%20RETRIEVAL/AttendanceManagementSystemBD/src/forms/ViewAttendance1.java</file>
             <file>file:/C:/Users/USER/OneDrive/Desktop/OOPALAB/MYSQL%20DATA%20INSERTION%20AND%20RETRIEVAL/AttendanceManagementSystemBD/src/forms/UserRegistration.java</file>
             <file>file:/C:/Users/USER/OneDrive/Desktop/OOPALAB/MYSQL%20DATA%20INSERTION%20AND%20RETRIEVAL/AttendanceManagementSystemBD/src/utility/images/login-background1.jpg</file>
-            <file>file:/C:/Users/USER/OneDrive/Desktop/OOPALAB/MYSQL%20DATA%20INSERTION%20AND%20RETRIEVAL/AttendanceManagementSystemBD/src/forms/ViewAttendance.java</file>
+            <file>file:/C:/Users/USER/OneDrive/Desktop/OOPALAB/MYSQL%20DATA%20INSERTION%20AND%20RETRIEVAL/AttendanceManagementSystemBD/src/forms/UpdateUser.java</file>
         </group>
     </open-files>
 </project-private>

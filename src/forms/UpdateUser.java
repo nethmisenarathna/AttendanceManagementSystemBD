@@ -27,7 +27,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
- * @author USER
+ * @author YIRanasinghe
  */
 public class UpdateUser extends javax.swing.JFrame {
 

@@ -20,7 +20,7 @@ import utility.BDUtility;
 
 /**
  *
- * @author jayaw
+ * @author SSIJayawickrama
  */
 public class ViewQrs extends javax.swing.JFrame {
 

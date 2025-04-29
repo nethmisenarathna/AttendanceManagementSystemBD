@@ -21,7 +21,7 @@ import java.sql.*;
 
 /**
  *
- * @author USER
+ * @author SAMANPSenarathna
  */
 public class UserRegistration extends javax.swing.JFrame {
 

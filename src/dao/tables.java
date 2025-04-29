@@ -43,6 +43,15 @@ public class tables {
                         + "workduration VARCHAR(100)"
                         + ");");
             }
+            if (!tableExists(st, "Admin")) {
+                 st.executeUpdate("CREATE TABLE Admin ("
+                       + "id INT PRIMARY KEY AUTO_INCREMENT, "
+                       + "email VARCHAR(100) NOT NULL UNIQUE, "
+                       + "password VARCHAR(100) NOT NULL"
+                       + ");");
+}
+
+           
             JOptionPane.showMessageDialog(null, "Table Checked/created Successsfully");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);

@@ -18,6 +18,11 @@ import dao.ConnectionProvider;
 import java.text.SimpleDateFormat;
 import utility.BDUtility;
 
+/**
+ *
+ * @author SSIJayawicrama
+ */
+
 public class ViewAttendance1 extends JFrame {
      
     JTable table;
